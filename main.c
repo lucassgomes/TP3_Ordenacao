@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "tadMatrizDeVoo.h"
+#include "tadOrdena.h"
 
 int geraVID();
 void selecionaModo();
@@ -125,16 +125,52 @@ void modoInterativo() {
             inicializarTadMatrizDeVoo(&vet[i], tamVet);
             for (j = 0; j < qtdVoos; j++) {
                 geraVooAleatorio(&voo);
-//                printf("%d\n", getVid(&voo));
-//                printf("PISTA: %d\n", getPistaDecolagem(&voo));
-//                printf("AE DEC: %s\n", getAeroportoDecolagem(&voo));
-//                printf("AE POU: %s\n", getAeroportoPrevPouso(&voo));
-//                printf("HR DEC: %s\n", getHrDecolagem(&voo));
-//                printf("HR POU: %s\n", getHrPrevPouso(&voo));
-//                printf("%d\n", vet[i].ID);
                 insereVooMatriz(&vet[i], voo);
             }
             aux[i] = vet[i];
+        }
+        int algOrd, voltar2 = 0;
+        printf("\nEscolha um algoritmo de ordenação: ");
+        scanf("%d", &algOrd);
+        switch (algOrd) {
+            case 1:
+                bubble_sort(aux, tamVet);
+                for (i = 0; i < tamVet; i++) {
+                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                }
+                break;
+            case 2:
+                selection_sort(aux, tamVet);
+                for (i = 0; i < tamVet; i++) {
+                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                }
+                break;
+            case 3:
+                insertion_sort(aux, tamVet);
+                for (i = 0; i < tamVet; i++) {
+                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                }
+                break;
+            case 4:
+                shell_sort(aux, tamVet);
+                for (i = 0; i < tamVet; i++) {
+                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                }
+                break;
+            case 5:
+                quick_sort(aux, tamVet);
+                for (i = 0; i < tamVet; i++) {
+                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                }
+                break;
+            case 6:
+                heap_sort(aux, tamVet);
+                for (i = 0; i < tamVet; i++) {
+                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                }
+                break;
+            default:
+                printf("Inválido!");
         }
     }
 }
@@ -154,63 +190,64 @@ void modoArquivo() {
         return 0;
     } else {
         tadMatrizDeVoo *vet, *aux;
-        if(strcmp(nomeArquivo, "cenario1.txt") == 0){
+        if (strcmp(nomeArquivo, "cenario1.txt") == 0) {
             tamVet = 365;
             div = tamVet * 0.2;
             qtdVoos = 10;
-        } else if(strcmp(nomeArquivo, "cenario2.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario2.txt") == 0) {
             tamVet = 365;
             div = tamVet;
             qtdVoos = 10;
-        } else if(strcmp(nomeArquivo, "cenario3.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario3.txt") == 0) {
             tamVet = 365;
-            div = tamVet*0.2;
+            div = tamVet * 0.2;
             qtdVoos = 100;
-        } else if(strcmp(nomeArquivo, "cenario4.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario4.txt") == 0) {
             tamVet = 365;
             div = tamVet;
             qtdVoos = 100;
-        } else if(strcmp(nomeArquivo, "cenario5.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario5.txt") == 0) {
             tamVet = 3650;
-            div = tamVet*0.2;
+            div = tamVet * 0.2;
             qtdVoos = 10;
-        } else if(strcmp(nomeArquivo, "cenario6.txt") == 0) {
-            tamVet = 3650;
-            div = tamVet;
-            qtdVoos = 10;
-        } else if(strcmp(nomeArquivo, "cenario7.txt") == 0) {
-            tamVet = 3650;
-            div = tamVet*0.2;
-            qtdVoos = 100;
-        } else if(strcmp(nomeArquivo, "cenario8.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario6.txt") == 0) {
             tamVet = 3650;
             div = tamVet;
-            qtdVoos = 100;
-        } else if(strcmp(nomeArquivo, "cenario9.txt") == 0) {
-            tamVet = 36500;
-            div = tamVet*0.2;
             qtdVoos = 10;
-        } else if(strcmp(nomeArquivo, "cenario10.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario7.txt") == 0) {
+            tamVet = 3650;
+            div = tamVet * 0.2;
+            qtdVoos = 100;
+        } else if (strcmp(nomeArquivo, "cenario8.txt") == 0) {
+            tamVet = 3650;
+            div = tamVet;
+            qtdVoos = 100;
+        } else if (strcmp(nomeArquivo, "cenario9.txt") == 0) {
+            tamVet = 36500;
+            div = tamVet * 0.2;
+            qtdVoos = 10;
+        } else if (strcmp(nomeArquivo, "cenario10.txt") == 0) {
             tamVet = 36500;
             div = tamVet;
             qtdVoos = 10;
-        } else if(strcmp(nomeArquivo, "cenario11.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario11.txt") == 0) {
             tamVet = 36500;
-            div = tamVet*0;2;
+            div = tamVet * 0;
+            2;
             qtdVoos = 100;
-        } else if(strcmp(nomeArquivo, "cenario12.txt") == 0) {
+        } else if (strcmp(nomeArquivo, "cenario12.txt") == 0) {
             tamVet = 36500;
             div = tamVet;
             qtdVoos = 100;
         }
         int vetor[div];
-        for(i=0;i<div;i++){
+        for (i = 0; i < div; i++) {
             fscanf(arq, "%d", &vetor[i]);
         }
-        vet = (tadMatrizDeVoo *) malloc(tamVet*sizeof(tadMatrizDeVoo));
-        aux = (tadMatrizDeVoo *) malloc(tamVet*sizeof(tadMatrizDeVoo));
-        for(i=0;i<div;i++){
-            for(j=0;j<qtdVoos;j++){
+        vet = (tadMatrizDeVoo *) malloc(tamVet * sizeof (tadMatrizDeVoo));
+        aux = (tadMatrizDeVoo *) malloc(tamVet * sizeof (tadMatrizDeVoo));
+        for (i = 0; i < div; i++) {
+            for (j = 0; j < qtdVoos; j++) {
                 fscanf(arq, "%s", horaD);
                 fscanf(arq, "%s", horaP);
                 fscanf(arq, "%s", pistaD);
@@ -223,7 +260,7 @@ void modoArquivo() {
                 setAeroportoDecolagem(&voo, pistaD);
                 setAeroportoPrevPouso(&voo, pistaP);
                 setPistaDecolagem(&voo, numPista);
-//                insereVooMatriz(&vet[vetor[i]], voo);
+                insereVooMatriz(&vet[vetor[i]], voo);
             }
             aux[i] = vet[i];
         }

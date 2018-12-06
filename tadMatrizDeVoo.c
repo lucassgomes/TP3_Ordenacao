@@ -23,9 +23,7 @@ void inicializarTadMatrizDeVoo(tadMatrizDeVoo* matrizDeVoo, int tamVet) {
 }
 
 void geraAeroportoAleatorio(char *aeroporto){
-
     int i;
-
     for(i=0;i<3;i++){
         aeroporto[i] = numeroAleatorio(65,90);
     }
@@ -34,13 +32,14 @@ void geraAeroportoAleatorio(char *aeroporto){
 
 //gera numeros aleatorios
 int numeroAleatorio(int a,int b){
-
     return a + rand() % (b - a);
 }
 
 void geraVooAleatorio(tadVoo *voo) {
-    int i, hr, min, letras;
+    int hr, min;
     char horaD[6], horaP[6], pistaD[4], pistaP[4];
+    setVid(voo, numeroAleatorio(1,1000));
+    setPistaDecolagem(voo, numeroAleatorio(1,20));
     hr = rand() % 23;
     min = rand() % 59;
     if (min < 10 && hr < 10) {
@@ -65,20 +64,10 @@ void geraVooAleatorio(tadVoo *voo) {
         sprintf(horaP, "%d:%d", hr, min);
     }
     setHrPrevPouso(voo, horaP);
-    //gerando os aeroportos de decolagem e pouso aleatoriamente
-    geraAeroportoAleatorio(voo->aeroportoDecolagem);
-    geraAeroportoAleatorio(voo->aeroportoPrevPouso);
-    //gerando a pista de decolagem
-    voo->pistaDecolagem = numeroAleatorio(1,20);
-    voo->vid = numeroAleatorio(1,1000);
-    /*
-//    printf("%d\n", getVid(voo));
-//    printf("PISTA: %d\n", getPistaDecolagem(voo));
-//    printf("AE DEC: %s\n", getAeroportoDecolagem(voo));
-//    printf("AE POU: %s\n", getAeroportoPrevPouso(voo));
-//    printf("HR DEC: %s\n", getHrDecolagem(voo));
-//    printf("HR POU: %s\n", getHrPrevPouso(voo));
-     * */
+    geraAeroportoAleatorio(pistaD);
+    setAeroportoDecolagem(voo, pistaD);
+    geraAeroportoAleatorio(pistaP);
+    setAeroportoPrevPouso(voo, pistaP);
 }
 
 /**
@@ -96,9 +85,6 @@ int insereVooMatriz(tadMatrizDeVoo* matrizDeVoo, tadVoo voo) {
     strcpy(hrP, voo.hrPrevPouso);
     horaDecolagem = converteHoras(hrD);
     horaPrevPouso = converteHoras(hrP);
-    printf("HR DEC: %s\n", getHrDecolagem(&voo));
-    printf("HR POU: %s\n", getHrPrevPouso(&voo));
-    printf("\nHORA D: %d HORA P: %d\n", horaDecolagem, horaPrevPouso);
     listaVoo = getListaVoo(&matrizDeVoo->matrizVoos[horaDecolagem][horaPrevPouso]);
     insereVoo(&listaVoo, voo);
     matrizDeVoo->matrizVoos[horaDecolagem][horaPrevPouso].listaVoo = listaVoo;
