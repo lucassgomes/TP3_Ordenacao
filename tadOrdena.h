@@ -11,5 +11,5 @@ void Particao(int Esq, int Dir, int *i, int *j, tadMatrizDeVoo *vet, int *Comp, 
 void Ordena(int Esq, int Dir, tadMatrizDeVoo *vet, int *Comp, int *Mov);
 void quick_sort(tadMatrizDeVoo *vet, int n);
 void troca(tadMatrizDeVoo *vetA, tadMatrizDeVoo *vetB);
-void heapify(tadMatrizDeVoo *vet, int n, int i, int *Mov, int *Comp);
+void heap_construct(tadMatrizDeVoo *vet, int n, int i, int *Mov, int *Comp);
 void heap_sort(tadMatrizDeVoo *vet, int n);

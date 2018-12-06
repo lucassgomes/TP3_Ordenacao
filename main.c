@@ -336,5 +336,8 @@ int escolhaCenario() {
 
 int main() {
     srand(time(NULL));
+    int nthreads, tid;
+    //Bifurca uma equipe de threads dando-lhes suas próprias cópias de variáveis ​​
+    #pragma omp paralelo private (nthreads, tid)
     selecionaModo();
 }
