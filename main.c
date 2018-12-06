@@ -41,7 +41,7 @@ void selecionaModo() {
 }
 
 void modoInterativo() {
-    int voltar = 0, opcao, tamVet, div, qtdVoos, *v;
+    int voltar = 0, opcao, tamVet, div, qtdVoos, *v, i, j;
     tadMatrizDeVoo *vet, *aux;
     tadVoo voo;
     inicializa(&voo);
@@ -121,18 +121,20 @@ void modoInterativo() {
         aux = (tadMatrizDeVoo *) malloc(tamVet * sizeof (tadMatrizDeVoo));
         v = (int *) malloc((tamVet + 1) * sizeof (int));
         int erro;
-        for (int i = 0; i < 3; i++) {
-            inicializarTadMatrizDeVoo(&vet[i]);
-            for (int j = 0; j < 3; j++) {
+        for (i = 0; i < div; i++) {
+            inicializarTadMatrizDeVoo(&vet[i], tamVet);
+            for (j = 0; j < qtdVoos; j++) {
                 geraVooAleatorio(&voo);
-                printf("%d\n", getVid(&voo));
-                printf("PISTA: %d\n", getPistaDecolagem(&voo));
-                printf("AE DEC: %s\n", getAeroportoDecolagem(&voo));
-                printf("AE POU: %s\n", getAeroportoPrevPouso(&voo));
-                printf("HR DEC: %s\n", getHrDecolagem(&voo));
-                printf("HR POU: %s\n", getHrPrevPouso(&voo));
-//                insereVooMatriz(&vet[i], voo);
+//                printf("%d\n", getVid(&voo));
+//                printf("PISTA: %d\n", getPistaDecolagem(&voo));
+//                printf("AE DEC: %s\n", getAeroportoDecolagem(&voo));
+//                printf("AE POU: %s\n", getAeroportoPrevPouso(&voo));
+//                printf("HR DEC: %s\n", getHrDecolagem(&voo));
+//                printf("HR POU: %s\n", getHrPrevPouso(&voo));
+//                printf("%d\n", vet[i].ID);
+                insereVooMatriz(&vet[i], voo);
             }
+            aux[i] = vet[i];
         }
     }
 }
@@ -221,7 +223,7 @@ void modoArquivo() {
                 setAeroportoDecolagem(&voo, pistaD);
                 setAeroportoPrevPouso(&voo, pistaP);
                 setPistaDecolagem(&voo, numPista);
-                insereVooMatriz(&vet[vetor[i]], voo);
+//                insereVooMatriz(&vet[vetor[i]], voo);
             }
             aux[i] = vet[i];
         }

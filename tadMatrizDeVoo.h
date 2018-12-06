@@ -16,9 +16,13 @@ typedef struct {
  * Inicializa a ED do TAD matriz de voos
  * @param matrizDeVoo Endereço da ED do TAD matriz de voos
  */
-void inicializarTadMatrizDeVoo(tadMatrizDeVoo* matrizDeVoo);
+void inicializarTadMatrizDeVoo(tadMatrizDeVoo* matrizDeVoo, int tamVet);
 
 void geraVooAleatorio(tadVoo *voo);
+
+void geraAeroporto(char *aeroporto);
+
+int numAleatorio(int a, int b);
 /**
  * Insere um voo na matriz de voos a partir de uma cópia do TAD voo e um endereço para ED do TAD matriz de voos
  * @param matrizDeVoo Endereço da ED do TAD matriz de voos
