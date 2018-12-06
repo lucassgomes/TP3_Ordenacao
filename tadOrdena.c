@@ -25,13 +25,11 @@ void bubble_sort(tadMatrizDeVoo *vet, int tamVet) {
             break;
         }
     }
-    for (i = 0; i < tamVet - 1; i++) {
-        printf("%d\n", vet[i].ID);
-    }
     TempFinal = clock();
     Tempo_ms = (TempFinal - TempInicial) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Comparacoes: %d\nMovimentacoes: %d\nTempo gasto: %lf ms\n", Comp, Mov, Tempo_ms);
-    printf("------------------------------------------------------------------------------\n\n");
+    printf("------------------            RESULTADO          -----------------------------\n");
+    printf("Movimentacoes: %d\nComparacoes: %d\nTempo gasto: %lf ms\n", Mov, Comp, Tempo_ms);
+    printf("------------------------------------------------------------------------------\n");
 }
 
 void selection_sort(tadMatrizDeVoo *vet, int tamVet) {
@@ -57,8 +55,9 @@ void selection_sort(tadMatrizDeVoo *vet, int tamVet) {
     }
     TempFinal = clock();
     Tempo_ms = (TempFinal - TempInicial) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Comparacoes: %d\nMovimentacoes: %d\nTempo gasto: %lf ms\n", Comp, Mov, Tempo_ms);
-    printf("------------------------------------------------------------------------------\n\n");
+    printf("------------------            RESULTADO          -----------------------------\n");
+    printf("Movimentacoes: %d\nComparacoes: %d\nTempo gasto: %lf ms\n", Mov, Comp, Tempo_ms);
+    printf("------------------------------------------------------------------------------\n");
 }
 
 void insertion_sort(tadMatrizDeVoo *vet, int tamVet) {
@@ -83,8 +82,9 @@ void insertion_sort(tadMatrizDeVoo *vet, int tamVet) {
     }
     TempFinal = clock();
     Tempo_ms = (TempFinal - TempInicial) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Comparacoes: %d\nMovimentacoes: %d\nTempo gasto: %lf ms\n", Comp, Mov, Tempo_ms);
-    printf("------------------------------------------------------------------------------\n\n");
+    printf("------------------            RESULTADO          -----------------------------\n");
+    printf("Movimentacoes: %d\nComparacoes: %d\nTempo gasto: %lf ms\n", Mov, Comp, Tempo_ms);
+    printf("------------------------------------------------------------------------------\n");
 }
 
 void shell_sort(tadMatrizDeVoo *vet, int n) {
@@ -119,8 +119,9 @@ void shell_sort(tadMatrizDeVoo *vet, int n) {
     } while (h != 1);
     TempFinal = clock();
     Tempo_ms = (TempFinal - TempInicial) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Comparacoes: %d\nMovimentacoes: %d\nTempo gasto: %lf ms\n", Comp, Mov, Tempo_ms);
-    printf("------------------------------------------------------------------------------\n\n");
+    printf("------------------            RESULTADO          -----------------------------\n");
+    printf("Movimentacoes: %d\nComparacoes: %d\nTempo gasto: %lf ms\n", Mov, Comp, Tempo_ms);
+    printf("------------------------------------------------------------------------------\n");
 }
 
 void Particao(int Esq, int Dir, int *i, int *j, tadMatrizDeVoo *vet, int *Comp, int *Mov) {
@@ -170,8 +171,9 @@ void quick_sort(tadMatrizDeVoo *vet, int n) {
     Ordena(0, n - 1, vet, &Comp, &Mov);
     TempFinal = clock();
     Tempo_ms = (TempFinal - TempInicial) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Comparacoes: %d\nMovimentacoes: %d\nTempo gasto: %lf ms\n", Comp, Mov, Tempo_ms);
-    printf("------------------------------------------------------------------------------\n\n");
+    printf("------------------            RESULTADO          -----------------------------\n");
+    printf("Movimentacoes: %d\nComparacoes: %d\nTempo gasto: %lf ms\n", Mov, Comp, Tempo_ms);
+    printf("------------------------------------------------------------------------------\n");
 }
 
 void troca(tadMatrizDeVoo *vetA, tadMatrizDeVoo * vetB) {
@@ -214,6 +216,7 @@ void heap_sort(tadMatrizDeVoo *vet, int n) {
     }
     TempFinal = clock();
     Tempo_ms = (TempFinal - TempInicial) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Comparacoes: %d\nMovimentacoes: %d\nTempo gasto: %lf ms\n", Comp, Mov, Tempo_ms);
-    printf("------------------------------------------------------------------------------\n\n");
+    printf("------------------            RESULTADO          -----------------------------\n");
+    printf("Movimentacoes: %d\nComparacoes: %d\nTempo gasto: %lf ms\n", Mov, Comp, Tempo_ms);
+    printf("------------------------------------------------------------------------------\n");
 }

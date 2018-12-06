@@ -9,6 +9,7 @@ void selecionaModo();
 void modoInterativo();
 void modoArquivo();
 int escolhaCenario();
+int escolhaAlgoritmo();
 
 int geraVID() {
     return (0 + rand() % (100 + 1 - 0));
@@ -40,11 +41,17 @@ void selecionaModo() {
     }
 }
 
+int escolhaAlgoritmo() {
+    int algOrd;
+    printf("\nEscolha um algoritmo de ordenação: ");
+    scanf("%d", &algOrd);
+    return algOrd;
+}
+
 void modoInterativo() {
-    int voltar = 0, opcao, tamVet, div, qtdVoos, *v, i, j;
+    int voltar = 0, voltar2 = 0, opcao, tamVet, div, qtdVoos, i, j, optAlg;
     tadMatrizDeVoo *vet, *aux;
     tadVoo voo;
-    inicializa(&voo);
     while (voltar == 0) {
         opcao = escolhaCenario();
         switch (opcao) {
@@ -119,8 +126,6 @@ void modoInterativo() {
         }
         vet = (tadMatrizDeVoo *) malloc(tamVet * sizeof (tadMatrizDeVoo));
         aux = (tadMatrizDeVoo *) malloc(tamVet * sizeof (tadMatrizDeVoo));
-        v = (int *) malloc((tamVet + 1) * sizeof (int));
-        int erro;
         for (i = 0; i < div; i++) {
             inicializarTadMatrizDeVoo(&vet[i], tamVet);
             for (j = 0; j < qtdVoos; j++) {
@@ -129,48 +134,54 @@ void modoInterativo() {
             }
             aux[i] = vet[i];
         }
-        int algOrd, voltar2 = 0;
-        printf("\nEscolha um algoritmo de ordenação: ");
-        scanf("%d", &algOrd);
-        switch (algOrd) {
-            case 1:
-                bubble_sort(aux, tamVet);
-                for (i = 0; i < tamVet; i++) {
-                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
-                }
-                break;
-            case 2:
-                selection_sort(aux, tamVet);
-                for (i = 0; i < tamVet; i++) {
-                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
-                }
-                break;
-            case 3:
-                insertion_sort(aux, tamVet);
-                for (i = 0; i < tamVet; i++) {
-                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
-                }
-                break;
-            case 4:
-                shell_sort(aux, tamVet);
-                for (i = 0; i < tamVet; i++) {
-                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
-                }
-                break;
-            case 5:
-                quick_sort(aux, tamVet);
-                for (i = 0; i < tamVet; i++) {
-                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
-                }
-                break;
-            case 6:
-                heap_sort(aux, tamVet);
-                for (i = 0; i < tamVet; i++) {
-                    aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
-                }
-                break;
-            default:
-                printf("Inválido!");
+        while (voltar2 == 0) {
+            optAlg = escolhaAlgoritmo();
+            switch (optAlg) {
+                case 1:
+                    bubble_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i];
+                    }
+                    break;
+                case 2:
+                    selection_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i];
+                    }
+                    break;
+                case 3:
+                    insertion_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i];
+                    }
+                    break;
+                case 4:
+                    shell_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i];
+                    }
+                    break;
+                case 5:
+                    quick_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i];
+                    }
+                    break;
+                case 6:
+                    heap_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                    }
+                    break;
+                case 7:
+                    voltar2 = 1;
+                    break;
+                case 0:
+                    exit(0);
+                    break;
+                default:
+                    printf("Inválido!");
+            }
         }
     }
 }
@@ -178,7 +189,7 @@ void modoInterativo() {
 void modoArquivo() {
     FILE *arq = NULL;
     char nomeArquivo[255];
-    int i, j, pista, tamVet, div, qtdVoos, optAlg, numPista;
+    int i, j, pista, tamVet, div, qtdVoos, optAlg, numPista, voltar = 0;
     char c, horaD[6], horaP[6], pistaD[4], pistaP[4];
     tadVoo voo;
     printf("Entre com o caminho e a extensão do arquivo: ");
@@ -187,7 +198,6 @@ void modoArquivo() {
     if (arq == NULL) {
         printf("%s nao existe.\nEntre com um caminho/arquivo válido!", nomeArquivo);
         modoArquivo();
-        return 0;
     } else {
         tadMatrizDeVoo *vet, *aux;
         if (strcmp(nomeArquivo, "cenario1.txt") == 0) {
@@ -247,13 +257,13 @@ void modoArquivo() {
         vet = (tadMatrizDeVoo *) malloc(tamVet * sizeof (tadMatrizDeVoo));
         aux = (tadMatrizDeVoo *) malloc(tamVet * sizeof (tadMatrizDeVoo));
         for (i = 0; i < div; i++) {
+            inicializarTadMatrizDeVoo(&vet[i], tamVet);
             for (j = 0; j < qtdVoos; j++) {
                 fscanf(arq, "%s", horaD);
                 fscanf(arq, "%s", horaP);
                 fscanf(arq, "%s", pistaD);
                 fscanf(arq, "%s", pistaP);
                 fscanf(arq, "%d", &numPista);
-                printf("%s\n", horaD);
                 setVid(&voo, geraVID());
                 setHrDecolagem(&voo, horaD);
                 setHrPrevPouso(&voo, horaP);
@@ -263,6 +273,55 @@ void modoArquivo() {
                 insereVooMatriz(&vet[vetor[i]], voo);
             }
             aux[i] = vet[i];
+        }
+        while (voltar == 0) {
+            optAlg = escolhaAlgoritmo();
+            switch (optAlg) {
+                case 1:
+                    bubble_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                    }
+                    break;
+                case 2:
+                    selection_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                    }
+                    break;
+                case 3:
+                    insertion_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                    }
+                    break;
+                case 4:
+                    shell_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                    }
+                    break;
+                case 5:
+                    quick_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                    }
+                    break;
+                case 6:
+                    heap_sort(aux, tamVet);
+                    for (i = 0; i < tamVet; i++) {
+                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                    }
+                    break;
+                case 7:
+                    voltar = 1;
+                    break;
+                case 0:
+                    exit(0);
+                    break;
+                default:
+                    printf("Inválido!");
+            }
         }
     }
     fclose(arq);
