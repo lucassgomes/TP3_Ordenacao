@@ -43,7 +43,7 @@ void selecionaModo() {
 
 int escolhaAlgoritmo() {
     int algOrd;
-    printf("\nEscolha um algoritmo de ordenação: ");
+    printf("\nEscolha um algoritmo de ordenação: \n1 - Bubble\n2 - Select\n3 - Insert\n4 - Shell\n5 - Quick\n6 - Heap\n0 - Sair\nDigite sua escolha: ");
     scanf("%d", &algOrd);
     return algOrd;
 }
@@ -119,6 +119,7 @@ void modoInterativo() {
                 qtdVoos = 100;
                 break;
             case 13:
+                voltar = 1;
                 selecionaModo();
                 break;
             default:
@@ -137,6 +138,9 @@ void modoInterativo() {
         while (voltar2 == 0) {
             optAlg = escolhaAlgoritmo();
             switch (optAlg) {
+                case 0:
+                    exit(0);
+                    break;
                 case 1:
                     bubble_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
@@ -170,14 +174,8 @@ void modoInterativo() {
                 case 6:
                     heap_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
-                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                        aux[i] = vet[i];
                     }
-                    break;
-                case 7:
-                    voltar2 = 1;
-                    break;
-                case 0:
-                    exit(0);
                     break;
                 default:
                     printf("Inválido!");
@@ -280,47 +278,44 @@ void modoArquivo() {
                 case 1:
                     bubble_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
-                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                        aux[i] = vet[i];
                     }
                     break;
                 case 2:
                     selection_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
-                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                        aux[i] = vet[i];
                     }
                     break;
                 case 3:
                     insertion_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
-                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                        aux[i] = vet[i];
                     }
                     break;
                 case 4:
                     shell_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
-                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                        aux[i] = vet[i];
                     }
                     break;
                 case 5:
                     quick_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
-                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                        aux[i] = vet[i];
                     }
                     break;
                 case 6:
                     heap_sort(aux, tamVet);
                     for (i = 0; i < tamVet; i++) {
-                        aux[i] = vet[i]; //Desordena o vetor auxiliar para ser usado novamente
+                        aux[i] = vet[i];
                     }
-                    break;
-                case 7:
-                    voltar = 1;
                     break;
                 case 0:
                     exit(0);
                     break;
                 default:
-                    printf("Inválido!");
+                    printf("Inválido!\n");
             }
         }
     }
@@ -329,7 +324,8 @@ void modoArquivo() {
 
 int escolhaCenario() {
     int opt;
-    printf("Escolha um dos 12 cenários: ");
+    printf("Escolha um dos 12 cenários: \n0 - Sair\n13 - Voltar\n");
+    printf("Digite sua escolha: ");
     scanf("%d", &opt);
     return opt;
 }
@@ -338,6 +334,6 @@ int main() {
     srand(time(NULL));
     int nthreads, tid;
     //Bifurca uma equipe de threads dando-lhes suas próprias cópias de variáveis ​​
-    #pragma omp paralelo private (nthreads, tid)
+#pragma omp paralelo private (nthreads, tid)
     selecionaModo();
 }
